@@ -36,11 +36,6 @@ jobs:
           TZ: America/Bogota
         run: |
           python generate.py _site/index.html summary.txt
-          {
-            echo "summary<<EOF"
-            cat summary.txt 2>/dev/null || echo "Nueva edición publicada."
-            echo "EOF"
-          } >> "$GITHUB_OUTPUT"
 
       - name: Subir artefacto de Pages
         uses: actions/upload-pages-artifact@v3
@@ -50,22 +45,3 @@ jobs:
       - name: Desplegar en GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Avisar por email
-        if: success()
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          secure: true
-          username: ${{ secrets.MAIL_USERNAME }}
-          password: ${{ secrets.MAIL_PASSWORD }}
-          subject: "Nueva edicion — Geopolitics for Pirates"
-          to: ${{ secrets.MAIL_TO }}
-          from: Geopolitics for Pirates
-          body: |
-            Se publico una nueva edicion.
-
-            ${{ steps.gen.outputs.summary }}
-
-            Leela aqui: ${{ steps.deployment.outputs.page_url }}
