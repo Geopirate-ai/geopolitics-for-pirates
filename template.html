@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Geopolitics for Pirates — Inteligencia geopolítica sin bandera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,700&family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+:root{
+  --void:#08080A;--pitch:#0D0D10;--plank:#141419;--plank-2:#1B1B22;
+  --bone:#ECE7DA;--bone-dim:#938E84;--gold:#D4AF37;--gold-deep:#A8842A;--blood:#C7402F;
+  --line:rgba(236,231,218,.12);--line-soft:rgba(236,231,218,.07);
+  --c-liberal:#5C8BC4;--c-realista:#5EA08F;--c-conservador:#C25A4F;--c-multipolar:#9A7DBE;
+  --c-critico:#CB7A5E;--c-tecnico:#8493A6;--c-regional:#7BA862;--c-generalista:#C2B07E;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--void);color:var(--bone);font-family:"Spectral",Georgia,serif;font-size:17px;line-height:1.62;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+.wrap{max-width:1200px;margin:0 auto;padding:0 26px}
+.jolly{display:block}
+
+/* MASTHEAD */
+.mast{position:sticky;top:0;z-index:60;background:rgba(8,8,10,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.mast .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
+.logo-lock{display:flex;align-items:center;gap:13px;min-width:0;text-decoration:none;color:inherit}
+.logo-lock .jolly{width:34px;height:34px;color:var(--bone);flex:none}
+.wordmark{font-family:"Fraunces",serif;font-weight:900;font-size:18px;letter-spacing:.01em;line-height:.95;text-transform:uppercase}
+.wordmark small{display:block;font-family:"Space Mono",monospace;font-weight:400;font-size:8.5px;letter-spacing:.34em;color:var(--gold);margin-top:3px}
+.mast nav{display:flex;gap:22px}
+.mast nav a{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);text-decoration:none;transition:color .2s;white-space:nowrap}
+.mast nav a:hover,.mast nav a.active{color:var(--gold)}
+.mast .clock{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.1em;color:var(--bone-dim);text-align:right}
+.mast .clock b{color:var(--gold);font-weight:400}
+@media(max-width:980px){.mast nav{display:none}.mast .clock{display:none}}
+
+/* HERO */
+.hero{position:relative;min-height:600px;display:flex;align-items:center;padding:90px 0;border-bottom:1px solid var(--line);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.42) contrast(1.12) sepia(.18);opacity:.6}
+.hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(8,8,10,.96),rgba(8,8,10,.55) 58%,rgba(8,8,10,.82)),linear-gradient(0deg,var(--void),transparent 55%)}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 16% 28%,rgba(212,175,55,.1),transparent 55%);pointer-events:none}
+.hero .wrap{position:relative;z-index:2}
+.flag-line{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:13px;margin-bottom:28px}
+.flag-line::after{content:"";flex:1;height:1px;background:var(--line);max-width:160px}
+.hero h1{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(2.9rem,9vw,6.4rem);line-height:.94;letter-spacing:-.02em;margin-bottom:24px;text-shadow:0 2px 40px rgba(0,0,0,.6)}
+.hero h1 em{font-style:italic;font-weight:700;color:var(--gold)}
+.hero .lede{font-size:clamp(1.05rem,2.3vw,1.4rem);max-width:50ch;color:var(--bone);opacity:.92;line-height:1.5}
+.sea{margin-top:38px;display:inline-flex;align-items:center;gap:14px;border:1px solid var(--line);border-left:3px solid var(--blood);background:rgba(199,64,47,.1);padding:13px 18px;border-radius:3px;max-width:100%;backdrop-filter:blur(3px)}
+.sea .tick{width:9px;height:9px;border-radius:50%;background:var(--blood);flex:none;animation:pulse 2.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(199,64,47,.55)}70%{box-shadow:0 0 0 9px rgba(199,64,47,0)}100%{box-shadow:0 0 0 0 rgba(199,64,47,0)}}
+.sea span.txt{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.05em;color:var(--bone);line-height:1.4}
+.sea span.txt b{color:var(--blood);font-weight:700;text-transform:uppercase}
+
+/* TOC / ÍNDICE */
+.toc{background:var(--pitch);border-bottom:1px solid var(--line);padding:54px 0;scroll-margin-top:64px}
+.toc h2{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:11px}
+.toc h2 .jolly{width:15px;height:15px;color:var(--gold)}
+.toc-list{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:720px){.toc-list{grid-template-columns:1fr}}
+.toc-item{background:var(--pitch);display:flex;align-items:center;gap:20px;padding:20px 22px;text-decoration:none;transition:background .18s}
+.toc-item:hover{background:var(--plank)}
+.toc-item .rn{font-family:"Fraunces",serif;font-style:italic;font-weight:700;font-size:1.9rem;color:var(--gold);opacity:.85;width:42px;flex:none;text-align:center}
+.toc-item .tt{font-family:"Fraunces",serif;font-weight:700;font-size:1.25rem;line-height:1.05}
+.toc-item .ds{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--bone-dim);margin-top:4px;display:block}
+.toc-item .arr{margin-left:auto;color:var(--gold);transition:transform .18s;font-size:1.1rem}
+.toc-item:hover .arr{transform:translateX(4px)}
+
+/* SECTION SHELL */
+.sec{padding:78px 0;border-bottom:1px solid var(--line);scroll-margin-top:74px}
+.sec.pitch{background:var(--pitch)}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:36px;border-bottom:1px solid var(--line);padding-bottom:22px}
+.sec-head .eye{font-family:"Space Mono",monospace;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.sec-head .eye .jolly{width:15px;height:15px;color:var(--gold)}
+.sec-head h2{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(2rem,5vw,3.3rem);line-height:1;letter-spacing:-.015em}
+.sec-head h2 .en{display:block;font-family:"Space Mono",monospace;font-size:12px;font-weight:400;letter-spacing:.2em;color:var(--bone-dim);text-transform:uppercase;margin-top:12px}
+.sec-head .blurb{max-width:42ch;color:var(--bone-dim);font-size:.95rem;text-align:right}
+@media(max-width:760px){.sec-head .blurb{text-align:left}}
+
+/* FEATURE IMAGE */
+.feature{position:relative;height:clamp(220px,32vw,380px);overflow:hidden;border-radius:5px;border:1px solid var(--line);background:linear-gradient(135deg,#1c1407,#08080A);margin-bottom:38px}
+.feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.62) contrast(1.08) sepia(.26)}
+.feature::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,8,10,.15),rgba(8,8,10,.82)),linear-gradient(90deg,rgba(212,175,55,.14),transparent 55%)}
+.feature figcaption{position:absolute;left:24px;bottom:20px;z-index:2;font-family:"Fraunces",serif;font-weight:700;font-size:clamp(1.2rem,2.6vw,1.7rem);color:var(--bone);max-width:26ch;line-height:1.1}
+.feature figcaption .mono{display:block;font-family:"Space Mono",monospace;font-weight:400;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:9px}
+
+/* EL VIGÍA */
+.brief-stamp{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.16em;color:var(--bone-dim);text-transform:uppercase;margin-bottom:26px}
+.brief-stamp b{color:var(--gold)}
+.dispatch{display:grid;grid-template-columns:120px 1fr;gap:24px;padding:24px 0;border-top:1px solid var(--line-soft);transition:background .2s}
+.dispatch:first-of-type{border-top:1px solid var(--line)}
+.dispatch:hover{background:rgba(236,231,218,.018)}
+.dispatch .meta{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.06em;color:var(--bone-dim);line-height:1.7;text-transform:uppercase}
+.dispatch .meta .reg{color:var(--bone)}
+.dispatch.hot .meta .flag{color:var(--blood);font-weight:700}
+.dispatch .body h3{font-family:"Fraunces",serif;font-weight:600;font-size:1.4rem;line-height:1.15;margin-bottom:9px}
+.dispatch .body h3 em{font-style:italic;color:var(--gold)}
+.dispatch .body p{font-size:1rem;color:var(--bone);opacity:.86;max-width:68ch}
+.dispatch .body .src{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.08em;color:var(--bone-dim);margin-top:10px;text-transform:uppercase}
+@media(max-width:680px){.dispatch{grid-template-columns:1fr;gap:8px}}
+
+/* LA CARTA */
+.reads{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:var(--line);border:1px solid var(--line)}
+@media(max-width:760px){.reads{grid-template-columns:1fr}}
+.read{background:var(--void);padding:34px 32px;transition:background .2s;display:flex;flex-direction:column}
+.read:hover{background:var(--plank)}
+.read .lens{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-deep);display:inline-flex;align-items:center;gap:8px;margin-bottom:18px}
+.read .lens .dot{width:8px;height:8px;border-radius:50%;background:currentColor}
+.read h3{font-family:"Fraunces",serif;font-weight:700;font-size:1.65rem;line-height:1.08;letter-spacing:-.01em;margin-bottom:14px}
+.read p{font-size:1rem;color:var(--bone);opacity:.85;line-height:1.55;flex:1}
+.read .kicker{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--bone-dim);margin-top:20px;text-transform:uppercase}
+
+/* EL HORIZONTE */
+.rumbos{display:flex;flex-direction:column}
+.rumbo{display:grid;grid-template-columns:90px 1fr;gap:30px;padding:40px 0;border-top:1px solid var(--line)}
+.rumbo .num{font-family:"Fraunces",serif;font-style:italic;font-weight:700;font-size:3.4rem;line-height:.8;color:var(--gold);opacity:.85}
+.rumbo h3{font-family:"Fraunces",serif;font-weight:700;font-size:clamp(1.5rem,3.5vw,2.2rem);line-height:1.05;letter-spacing:-.015em;margin-bottom:16px}
+.rumbo p{font-size:1.06rem;color:var(--bone);opacity:.88;max-width:64ch;line-height:1.6}
+.rumbo em{color:var(--gold);font-style:italic}
+@media(max-width:680px){.rumbo{grid-template-columns:1fr;gap:12px}.rumbo .num{font-size:2.4rem}}
+
+/* EL BOTÍN */
+.loot-intro{max-width:60ch;color:var(--bone-dim);margin-bottom:34px;font-size:1rem}
+.loot{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+@media(max-width:900px){.loot{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.loot{grid-template-columns:1fr}}
+.chest{background:var(--plank);border:1px solid var(--line);border-radius:4px;padding:26px 24px;position:relative;overflow:hidden;transition:transform .18s,border-color .18s,box-shadow .18s}
+.chest::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.chest:hover{transform:translateY(-4px);border-color:var(--gold-deep);box-shadow:0 18px 40px -22px rgba(212,175,55,.4)}
+.chest .config{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.chest h3{font-family:"Fraunces",serif;font-weight:700;font-size:1.32rem;line-height:1.12;margin-bottom:11px}
+.chest p{font-size:.95rem;color:var(--bone);opacity:.84;line-height:1.5;margin-bottom:16px}
+.chest .move{font-family:"Space Mono",monospace;font-size:10.5px;letter-spacing:.04em;color:var(--bone-dim);border-top:1px solid var(--line-soft);padding-top:13px;text-transform:uppercase}
+.chest .move b{color:var(--bone);font-weight:700}
+.disclaimer{margin-top:34px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--bone-dim);border:1px dashed var(--line);padding:16px 18px;border-radius:3px;line-height:1.7}
+.disclaimer b{color:var(--gold)}
+
+/* EL COFRE */
+.cofre-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:840px){.cofre-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.cofre-grid{grid-template-columns:1fr}}
+.src-card{display:flex;align-items:flex-start;gap:12px;background:var(--pitch);border:1px solid var(--line);border-radius:3px;padding:16px;text-decoration:none;transition:border-color .18s,background .18s}
+.src-card:hover{border-color:var(--gold-deep);background:var(--plank)}
+.src-card .dot{width:9px;height:9px;border-radius:50%;margin-top:7px;flex:none}
+.src-card .t{font-family:"Fraunces",serif;font-weight:600;font-size:1.05rem;line-height:1.1;margin-bottom:4px;display:block}
+.src-card .l{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.04em;color:var(--bone-dim);text-transform:uppercase;display:block}
+.cofre-note{margin-top:26px;font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.04em;color:var(--bone-dim);line-height:1.7}
+.cofre-note b{color:var(--gold)}
+
+/* FOOTER */
+.foot{background:var(--void);padding:56px 0 60px}
+.foot .wrap{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;align-items:flex-start}
+.foot .logo-lock .jolly{width:40px;height:40px}
+.foot .wordmark{font-size:20px}
+.foot p{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.05em;line-height:1.9;color:var(--bone-dim);max-width:46ch}
+.foot p b{color:var(--gold)}
+.share-btn{display:inline-flex;align-items:center;gap:9px;font-family:"Space Mono",monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);background:transparent;border:1px solid var(--gold-deep);border-radius:3px;padding:12px 18px;cursor:pointer;transition:background .18s,color .18s;align-self:center}
+.share-btn:hover{background:var(--gold);color:var(--void)}
+.share-btn .jolly{width:17px;height:17px;color:currentColor}
+.auto-badge{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:14px}
+.auto-badge b{color:var(--gold)}
+
+/* BACK TO TOP */
+.toTop{position:fixed;right:20px;bottom:20px;z-index:70;width:48px;height:48px;border-radius:50%;background:var(--plank);border:1px solid var(--gold-deep);color:var(--gold);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;display:flex;align-items:center;justify-content:center}
+.toTop .jolly{width:24px;height:24px}
+.toTop.show{opacity:1;pointer-events:auto}
+.toTop:hover{transform:translateY(-3px)}
+
+.js .rv{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.js .rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rv,.js .rv{opacity:1!important;transform:none!important}html{scroll-behavior:auto}}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="jolly" viewBox="0 0 100 100">
+    <g fill="currentColor">
+      <g stroke="currentColor" stroke-width="7.5" stroke-linecap="round">
+        <line x1="24" y1="34" x2="76" y2="74"/><line x1="76" y1="34" x2="24" y2="74"/>
+      </g>
+      <circle cx="22" cy="31" r="5.2"/><circle cx="28" cy="37" r="5.2"/>
+      <circle cx="78" cy="31" r="5.2"/><circle cx="72" cy="37" r="5.2"/>
+      <circle cx="22" cy="77" r="5.2"/><circle cx="28" cy="71" r="5.2"/>
+      <circle cx="78" cy="77" r="5.2"/><circle cx="72" cy="71" r="5.2"/>
+      <path d="M50 22c-15 0-25 10-25 24 0 9 4 14 9 17 1 .6 2 1.7 2 3.2V73c0 3 2.4 5 5.4 5h1.2c0-2.6 0-4.6 2-4.6s2 2 2 4.6h6c0-2.6 0-4.6 2-4.6s2 2 2 4.6h1.2c3 0 5.4-2 5.4-5v-2.6c0-1.5 1-2.6 2-3.2 5-3 9-8 9-17 0-14-10-24-25-24z"/>
+    </g>
+    <g fill="#08080A">
+      <ellipse cx="40" cy="46" rx="6.4" ry="7.4"/><ellipse cx="60" cy="46" rx="6.4" ry="7.4"/>
+      <path d="M50 52l-4.2 8h8.4z"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="mast">
+  <div class="wrap">
+    <a class="logo-lock" href="#top"><svg class="jolly"><use href="#jolly"/></svg>
+      <span class="wordmark">Geopolitics<br>for Pirates<small>SIN BANDERA · SIN AMO</small></span></a>
+    <nav>
+      <a href="#indice">Índice</a>
+      <a href="#vigia">El Vigía</a>
+      <a href="#carta">La Carta</a>
+      <a href="#horizonte">El Horizonte</a>
+      <a href="#tecnologia">Tecnología</a>
+      <a href="#botin">El Botín</a>
+      <a href="#cofre">El Cofre</a>
+    </nav>
+    <div class="clock" id="clock">—</div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1613690399151-65ea69478674?w=1900&q=70&auto=format&fit=crop" alt="Vista aérea de un buque en mar abierto" onerror="this.style.display='none'">
+  </div>
+  <div class="wrap">
+    <div class="flag-line">Inteligencia geopolítica · Número 01</div>
+    <h1>Lee las corrientes.<br><em>Toma el botín.</em></h1>
+    <p class="lede">El mundo no se reparte entre buenos y malos: se reparte entre quienes ven la abertura y quienes esperan permiso. Aquí leemos el tablero sin bandera ni amo —y señalamos hacia dónde sopla el viento.</p>
+    <div class="sea">
+      <span class="tick"></span>
+      <span class="txt"><b>Estado del mar: cambiante.</b> EE. UU. propone retomar el diálogo con Irán en Doha; Teherán lo desmiente. Los mercados apuestan por la calma.</span>
+    </div>
+  </div>
+</section>
+
+<!-- ÍNDICE -->
+<section class="toc" id="indice">
+  <div class="wrap">
+    <h2><svg class="jolly"><use href="#jolly"/></svg> Carta de ruta · Índice de a bordo</h2>
+    <div class="toc-list">
+      <a class="toc-item" href="#vigia"><span class="rn">I</span><span><span class="tt">El Vigía</span><span class="ds">The Lookout · briefing del día</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#carta"><span class="rn">II</span><span><span class="tt">La Carta</span><span class="ds">The Chart · los análisis que importan</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#horizonte"><span class="rn">III</span><span><span class="tt">El Horizonte</span><span class="ds">The Horizon · análisis visionario</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#tecnologia"><span class="rn">IV</span><span><span class="tt">El Astrolabio</span><span class="ds">The Astrolabe · tecnología y poder</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#botin"><span class="rn">V</span><span><span class="tt">El Botín</span><span class="ds">The Loot · las oportunidades</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#cofre"><span class="rn">VI</span><span><span class="tt">El Cofre</span><span class="ds">The Chest · la armería de fuentes</span></span><span class="arr">&rarr;</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- EL VIGÍA -->
+<section class="sec" id="vigia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección I · El Vigía</div>
+        <h2>El briefing del día<span class="en">The Lookout — what's on the horizon</span></h2></div>
+      <p class="blurb">Lo que un capitán necesita saber antes de zarpar. Despachos del día, ordenados por urgencia.</p>
+    </div>
+
+    <figure class="feature rv">
+      <img src="https://images.unsplash.com/photo-1605745341112-85968b19335b?w=1700&q=70&auto=format&fit=crop" alt="Buque de carga en alta mar" loading="lazy" onerror="this.style.display='none'">
+      <figcaption><span class="mono">Rutas marítimas · 29 jun 2026</span>El tablero del día vuelve a pasar por el estrecho de Ormuz.</figcaption>
+    </figure>
+
+    <div class="brief-stamp rv">Bitácora · <b>Lunes 29 de junio de 2026</b> · 14:00 ZULU · Posición: mar abierto</div>
+
+    <article class="dispatch hot rv">
+      <div class="meta"><span class="flag">&#9650; Urgente</span><br>Hoy 13:50 Z<br><span class="reg">Golfo Pérsico</span></div>
+      <div class="body"><h3>Trump anuncia cita en Doha; Teherán lo niega</h3>
+        <p>Trump dice que EE. UU. e Irán se sentarán mañana martes en Doha, después de que —según Washington— Teherán "pidiera hablar" tras días de ataques recíprocos. Pero un alto cargo iraní lo desmiente: no hay reuniones previstas con equipos técnicos estadounidenses esta semana. La tregua de junio sigue viva de milagro y nadie coincide siquiera en si habrá mesa.</p>
+        <p class="src">Vía Al Jazeera / CNBC — 29 jun 2026</p></div>
+    </article>
+
+    <article class="dispatch hot rv">
+      <div class="meta"><span class="flag">&#9650; Mercados</span><br>Hoy<br><span class="reg">Wall Street</span></div>
+      <div class="body"><h3>Las bolsas rebotan apostando por la calma</h3>
+        <p>Wall Street sube ante la posibilidad de una pausa entre EE. UU. e Irán: el Dow gana en torno a 365 puntos, el S&amp;P un 1,1% y el Nasdaq cerca del 2%. Alphabet sube un 4% en su debut como miembro del Dow, pese a cerrar un junio en rojo por las dudas sobre la IA. Europa, en cambio, cierra plana y a la espera.</p>
+        <p class="src">Vía CNBC — 29 jun 2026</p></div>
+    </article>
+
+    <article class="dispatch hot rv">
+      <div class="meta"><span class="flag">&#9650; Energía</span><br>Hoy<br><span class="reg">Crudo · Ormuz</span></div>
+      <div class="body"><h3>EE. UU. abre la puerta al crudo iraní</h3>
+        <p>El Tesoro estadounidense emitió una licencia de 60 días que autoriza producir, vender e importar petróleo iraní, con pago en dólares, hasta el 21 de agosto. Un giro notable: del bloqueo naval a dejar fluir los barriles de Teherán. El Brent ronda los 78 dólares, pero el cuello de botella de Ormuz sigue ahí mientras Irán busca palanca.</p>
+        <p class="src">Vía CNBC / Reuters</p></div>
+    </article>
+
+    <article class="dispatch rv">
+      <div class="meta">Hoy<br><span class="reg">Europa · Industria</span></div>
+      <div class="body"><h3>Volkswagen recortaría hasta 100.000 empleos</h3>
+        <p>Según la prensa, el gigante alemán prepararía la mayor poda de plantilla de su historia. El golpe simboliza la crisis del motor europeo, atrapado entre la sobrecapacidad china en vehículos eléctricos y unos costes que ya no cuadran.</p>
+        <p class="src">Vía CNN / Reuters</p></div>
+    </article>
+
+    <article class="dispatch rv">
+      <div class="meta">Hoy<br><span class="reg">Ciberespacio</span></div>
+      <div class="body"><h3>Sin alto el fuego en el ciberespacio</h3>
+        <p>Mientras los diplomáticos hablan de tregua, los ciberataques atribuidos a Irán contra Israel se han triplicado: de unos 1.600 incidentes el junio pasado a cerca de 4.800 este mes, según la autoridad cibernética israelí. "En el ciberespacio no hay alto el fuego", advierte su director. Infraestructura crítica y empresas, en la mira.</p>
+        <p class="src">Vía RFE/RL — 29 jun 2026</p></div>
+    </article>
+
+    <article class="dispatch rv">
+      <div class="meta">Hoy<br><span class="reg">América Latina</span></div>
+      <div class="body"><h3>Dos terremotos sacuden a Venezuela</h3>
+        <p>Una doble sacudida sísmica golpea a una economía venezolana ya de rodillas. El desastre llega en el peor momento para un país atrapado entre su crisis interna y una posición hemisférica cada vez más delicada.</p>
+        <p class="src">Vía CNN</p></div>
+    </article>
+
+    <article class="dispatch rv">
+      <div class="meta">Hoy<br><span class="reg">EE. UU. · Instituciones</span></div>
+      <div class="body"><h3>El Supremo amplía el poder presidencial</h3>
+        <p>La Corte Suprema falló que el presidente puede destituir a reguladores independientes —una victoria para Trump en el caso de la FTC—, aunque frenó por ahora el despido de la gobernadora de la Reserva Federal, Lisa Cook. El equilibrio de poderes en Washington se redibuja a favor de la Casa Blanca.</p>
+        <p class="src">Vía CNBC / SCOTUS</p></div>
+    </article>
+
+    <article class="dispatch rv">
+      <div class="meta">Hoy<br><span class="reg">Asia del Sur</span></div>
+      <div class="body"><h3>Pakistán bombardea Afganistán</h3>
+        <p>Ataques aéreos pakistaníes en la provincia afgana de Paktia dejaron víctimas civiles, incluidos niños, según las autoridades talibanes. Otra grieta abierta en una vecindad —Pakistán, Afganistán, Irán— que esta semana es a la vez mediadora y campo de batalla.</p>
+        <p class="src">Vía AP / Times of Israel</p></div>
+    </article>
+  </div>
+</section>
+
+<!-- LA CARTA -->
+<section class="sec pitch" id="carta">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección II · La Carta de Navegación</div>
+        <h2>Los análisis que importan<span class="en">The Chart — the deep reads</span></h2></div>
+      <p class="blurb">Menos titulares, más estructura. Las cuatro corrientes de fondo que mueven el tablero ahora mismo.</p>
+    </div>
+    <div class="reads">
+      <article class="read rv"><span class="lens"><span class="dot"></span>Geoeconomía · Realismo</span>
+        <h3>El fin del árbitro</h3>
+        <p>El laissez-faire ha muerto sin funeral. El "playbook" estadounidense de intervencionismo económico y trato transaccional se globaliza: cada gobierno deja de arbitrar el mercado para entrar a jugarlo. El inversor que solo sabía leer balances tendrá que aprender a leer capitales —porque ahora el Estado reparte cartas, no solo vigila la mesa.</p>
+        <span class="kicker">Lectura larga · informado por Lazard</span></article>
+      <article class="read rv"><span class="lens" style="color:var(--c-tecnico)"><span class="dot"></span>Seguridad · Rutas</span>
+        <h3>La guerra de los corredores</h3>
+        <p>Ormuz no es un accidente: es el método. Los cuellos de botella marítimos del siglo XX —y los corredores comerciales del XXI, como el IMEC que la guerra de Irán dejó inservible— se han convertido en armas. El poder ya no está solo en producir, sino en poder cortar o desviar el flujo. La "diplomacia de corredores" será el gran tablero de la década.</p>
+        <span class="kicker">Lectura larga · informado por Geopolitical Monitor</span></article>
+      <article class="read rv"><span class="lens" style="color:var(--c-multipolar)"><span class="dot"></span>Multipolaridad</span>
+        <h3>Alineamientos a la carta</h3>
+        <p>Pakistán y Catar median; los Estados del Golfo responden con misiles; India practica una "disuasión por asociación" en el Mediterráneo. En un sistema sin árbitro único, las potencias medias dejan de elegir bando y empiezan a cubrir apuestas. Quien lea bien estas coberturas verá las grietas antes de que se abran.</p>
+        <span class="kicker">Lectura larga · perspectiva Sur Global</span></article>
+      <article class="read rv"><span class="lens" style="color:var(--c-liberal)"><span class="dot"></span>Transatlántico</span>
+        <h3>La alianza que se agrieta</h3>
+        <p>El G7 de junio en Francia gestionó —no resolvió— las divergencias entre socios sobre China, Ucrania y aranceles, y la grieta entre Trump y Netanyahu sobre Líbano la ensancha aún más. El "Occidente" como bloque homogéneo es cada vez más una ficción cómoda: bajo el paraguas, cada cual ya calcula su propia ruta.</p>
+        <span class="kicker">Lectura larga · informado por EY / G7</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- EL HORIZONTE -->
+<section class="sec" id="horizonte">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección III · El Horizonte</div>
+        <h2>Análisis visionario<span class="en">The Horizon — waters yet uncharted</span></h2></div>
+      <p class="blurb">Tres rumbos hacia donde, creemos, se está moviendo el mundo. Apuestas de fondo, no pronósticos del clima.</p>
+    </div>
+
+    <figure class="feature rv">
+      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1700&q=70&auto=format&fit=crop" alt="Cableado de un centro de datos" loading="lazy" onerror="this.style.display='none'">
+      <figcaption><span class="mono">El nuevo petróleo</span>Detrás de cada modelo de IA hay cobre, energía y silicio en disputa.</figcaption>
+    </figure>
+
+    <div class="rumbos">
+      <article class="rumbo rv"><div class="num">I</div>
+        <div><h3>El cómputo es el nuevo petróleo</h3>
+          <p>La inteligencia artificial convierte tres cosas mundanas —cobre, energía y chips— en materias primas estratégicas. Quien controle la cadena del cómputo controlará el siglo, igual que el petróleo definió el anterior. La "soberanía tecnológica" europea, la sed de cobre y la carrera por la energía de los centros de datos no son temas separados: son <em>la misma guerra fría de los watts y los wafers</em>.</p></div></article>
+      <article class="rumbo rv"><div class="num">II</div>
+        <div><h3>La era de los cuellos de botella</h3>
+          <p>Ormuz, Suez, Malaca, Panamá, Taiwán. Durante un siglo fueron rutas; ahora son palancas. La próxima gran ventaja estratégica no será tener más barcos, sino poder cerrar —o reabrir— el grifo por el que pasa el mundo. La resiliencia (rutas alternativas, reservas, redundancia) deja de ser un costo y se vuelve <em>poder duro</em>.</p></div></article>
+      <article class="rumbo rv"><div class="num">III</div>
+        <div><h3>Las potencias medias toman el timón</h3>
+          <p>En un mundo sin hegemón que imponga orden, el margen de maniobra se desplaza hacia abajo: mediadores como Pakistán o Catar, coberturistas como India o los Estados del Golfo, hacedores de reglas regionales. El futuro no es bipolar ni unipolar sino <em>archipiélago</em>: muchos puertos, lealtades líquidas, y oportunidad para quien navegue sin atarse a un solo muelle.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- EL ASTROLABIO (TECNOLOGÍA) -->
+<section class="sec pitch" id="tecnologia">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección IV · El Astrolabio</div>
+        <h2>Tecnología y poder<span class="en">The Astrolabe — where silicon meets sovereignty</span></h2></div>
+      <p class="blurb">La tecnología dejó de ser herramienta para volverse terreno. Dónde el silicio, el cómputo y la órbita redibujan el tablero.</p>
+    </div>
+    <div class="reads">
+      <article class="read rv"><span class="lens"><span class="dot"></span>Chips · Estrategia nacional</span>
+        <h3>Corea del Sur arma su flota de silicio</h3>
+        <p>Seúl comprometió al menos 880.000 millones de dólares en una década para semiconductores, centros de datos de IA y robótica. Samsung y SK Hynix levantarán cuatro fábricas nuevas de memoria; la meta es dejar de ser proveedor ajeno y convertirse en potencia. El chip ya no es un producto: es doctrina de Estado.</p>
+        <span class="kicker">Vía TechStartups — 29 jun 2026</span></article>
+      <article class="read rv"><span class="lens" style="color:var(--c-tecnico)"><span class="dot"></span>Cómputo · Big Tech</span>
+        <h3>La guerra del cómputo: Google raciona a Meta</h3>
+        <p>Google limitó el acceso de Meta a sus modelos Gemini cuando esta pidió más capacidad de la que había, y hasta alquila cómputo a SpaceX para no quedarse corta. El cuello de botella del siglo no es el talento ni el dato: son los chips y los vatios. Quien tenga capacidad, manda.</p>
+        <span class="kicker">Vía The Information / Financial Times</span></article>
+      <article class="read rv"><span class="lens" style="color:var(--c-multipolar)"><span class="dot"></span>Semiconductores · Controles</span>
+        <h3>El frente invisible de los chips</h3>
+        <p>Washington sopesa a quién veta —DeepSeek, Huawei, un centenar de firmas chinas— mientras intenta repatriar la cadena del silicio y los Países Bajos pelean por que ASML siga vendiendo. La batalla ya no es por la GPU más rápida, sino por materiales, licencias y memoria. Taiwán sigue siendo el pivote del mundo.</p>
+        <span class="kicker">Vía Reuters / Financial Times</span></article>
+      <article class="read rv"><span class="lens" style="color:var(--c-liberal)"><span class="dot"></span>Espacio · Órbita</span>
+        <h3>La nube sube a la órbita</h3>
+        <p>SpaceX apuesta por centros de datos de IA en el espacio —energía solar sin noche, refrigeración gratis en el vacío— y ya cotiza en el Nasdaq-100. Si funciona, el próximo billón de infraestructura de IA no se levantará en Virginia ni en Singapur, sino sobre nuestras cabezas. La geopolítica empieza a mirar hacia arriba.</p>
+        <span class="kicker">Vía SpaceX / Bloomberg</span></article>
+    </div>
+  </div>
+</section>
+
+<!-- EL BOTÍN -->
+<section class="sec pitch" id="botin">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección V · El Botín</div>
+        <h2>Las oportunidades<span class="en">The Loot — every order opens a door</span></h2></div>
+      <p class="blurb">Cada configuración geopolítica cierra una puerta y abre otra. Aquí está la abertura que deja cada corriente del momento.</p>
+    </div>
+
+    <figure class="feature rv">
+      <img src="https://images.unsplash.com/photo-1606185540834-d6e7483ee1a4?w=1700&q=70&auto=format&fit=crop" alt="Buque de carga" loading="lazy" onerror="this.style.display='none'">
+      <figcaption><span class="mono">El botín</span>Un pirata no llora el naufragio: lee hacia dónde flota la carga.</figcaption>
+    </figure>
+
+    <p class="loot-intro rv">Estas son las puertas que abre el tablero de hoy —y quién está mejor situado para cruzarlas.</p>
+    <div class="loot">
+      <article class="chest rv"><div class="config">Configuración · Ormuz en disputa</div>
+        <h3>Barriles lejos del estrecho</h3>
+        <p>Mientras el Golfo sea ruleta, sube todo lo que evita el estrecho: GNL atlántico, crudo no-OPEP, rutas por el Cabo, seguros marítimos y tarifas de fletes.</p>
+        <div class="move">Mueven: <b>energía fuera del Golfo, navieras, reaseguro</b></div></article>
+      <article class="chest rv"><div class="config">Configuración · Estrangulación del cobre</div>
+        <h3>El metal de la IA</h3>
+        <p>Sin cobre no hay centros de datos. La presión beneficia a los grandes productores —Chile, Perú, RD del Congo— y a la "minería urbana": reciclaje, recuperación y sustitución del metal.</p>
+        <div class="move">Mueven: <b>mineras andinas, recicladores, royalties</b></div></article>
+      <article class="chest rv"><div class="config">Configuración · Soberanía tecnológica UE</div>
+        <h3>Europa quiere su propia nube</h3>
+        <p>Triplicar centros de datos y semiconductores propios abre la mayor ola de inversión digital europea en una década —incluida la energía (nuclear, SMR) que esos servidores devoran.</p>
+        <div class="move">Mueven: <b>chips de nodo maduro, cloud europeo, energía</b></div></article>
+      <article class="chest rv"><div class="config">Configuración · Rearme global</div>
+        <h3>El gasto militar al alza</h3>
+        <p>Europa, Japón y el Golfo rearman. No es solo munición: drones, defensa antiaérea, ciber y tecnología de doble uso entran en un ciclo de gasto plurianual.</p>
+        <div class="move">Mueven: <b>defensa, dual-use, drones, ciberseguridad</b></div></article>
+      <article class="chest rv"><div class="config">Configuración · El Estado como jugador</div>
+        <h3>Cobrar del erario</h3>
+        <p>Si los gobiernos reparten subsidio industrial, el premio es para quien lea bien la política pública: reshoring, minerales críticos, chips, energía limpia. La ventaja ya no es solo el producto, es la alineación.</p>
+        <div class="move">Mueven: <b>cadenas alineadas con el subsidio</b></div></article>
+      <article class="chest rv"><div class="config">Configuración · Posguerra (plazo largo)</div>
+        <h3>Reconstruir lo roto</h3>
+        <p>Si las treguas cuajan, Irán y Líbano necesitarán reconstrucción a gran escala: ingeniería, energía, materiales. Botín grande, riesgo alto, plazo largo —solo para estómagos firmes.</p>
+        <div class="move">Mueven: <b>ingeniería, infraestructura, materiales</b></div></article>
+    </div>
+    <p class="disclaimer rv"><b>Aviso de a bordo.</b> El Botín no es consejo financiero ni de inversión: es lectura de corrientes. Identificar una abertura no es prometer un tesoro, y ninguna ruta está libre de tormenta. Verifica, contrasta y navega bajo tu propio riesgo.</p>
+  </div>
+</section>
+
+<!-- EL COFRE -->
+<section class="sec" id="cofre">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección VI · El Cofre</div>
+        <h2>La armería de fuentes<span class="en">The Chest — your spyglasses</span></h2></div>
+      <p class="blurb">Doce catalejos esenciales para triangular tú mismo. El color marca desde dónde mira cada uno.</p>
+    </div>
+    <div class="cofre-grid">
+      <a class="src-card rv" href="https://www.foreignaffairs.com" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-liberal)"></span><span><span class="t">Foreign Affairs</span><span class="l">EE.UU · Liberal-internacional</span></span></a>
+      <a class="src-card rv" href="https://www.chathamhouse.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-liberal)"></span><span><span class="t">Chatham House</span><span class="l">R. Unido · Orden global</span></span></a>
+      <a class="src-card rv" href="https://carnegieendowment.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-liberal)"></span><span><span class="t">Carnegie Endowment</span><span class="l">Global · Conflictos</span></span></a>
+      <a class="src-card rv" href="https://quincyinst.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-realista)"></span><span><span class="t">Quincy Institute</span><span class="l">EE.UU · Realista / contención</span></span></a>
+      <a class="src-card rv" href="https://www.iiss.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-tecnico)"></span><span><span class="t">IISS</span><span class="l">R. Unido · Defensa</span></span></a>
+      <a class="src-card rv" href="https://valdaiclub.com" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-multipolar)"></span><span><span class="t">Valdai Club</span><span class="l">Rusia · Multipolar</span></span></a>
+      <a class="src-card rv" href="https://www.orfonline.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-multipolar)"></span><span><span class="t">Observer Research (ORF)</span><span class="l">India · Sur Global</span></span></a>
+      <a class="src-card rv" href="https://www.lowyinstitute.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-liberal)"></span><span><span class="t">Lowy Institute</span><span class="l">Australia · Indo-Pacífico</span></span></a>
+      <a class="src-card rv" href="https://mondiplo.com" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-critico)"></span><span><span class="t">Le Monde diplomatique</span><span class="l">Francia · Crítico</span></span></a>
+      <a class="src-card rv" href="https://www.celag.org" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-critico)"></span><span><span class="t">CELAG</span><span class="l">AmLat · Sur Global</span></span></a>
+      <a class="src-card rv" href="https://elordenmundial.com" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-generalista)"></span><span><span class="t">El Orden Mundial</span><span class="l">España · Divulgación</span></span></a>
+      <a class="src-card rv" href="https://www.geopoliticalmonitor.com" target="_blank" rel="noopener"><span class="dot" style="background:var(--c-tecnico)"></span><span><span class="t">Geopolitical Monitor</span><span class="l">Global · Riesgo</span></span></a>
+    </div>
+    <p class="cofre-note rv">El arsenal completo —<b>70 fuentes catalogadas por tipo, región y perspectiva</b>— vive en el directorio compañero <b>"Contrapunto"</b>. Pídelo si quieres incrustarlo aquí como buscador.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="logo-lock"><svg class="jolly"><use href="#jolly"/></svg>
+      <span class="wordmark">Geopolitics<br>for Pirates<small>SIN BANDERA · SIN AMO</small></span></div>
+    <p><b>Número 01 — edición de muestra.</b><br>El Vigía recoge despachos del 29 jun 2026; las fuentes se citan de forma abreviada y conviene contrastarlas. Fotografías: Unsplash (licencia libre). Los enlaces dirigen a sitios oficiales y pueden cambiar.<br><br>Esto no es consejo financiero ni de inversión. Lee las corrientes; decide tú el rumbo.<br><span class="auto-badge">Se actualiza <b>lunes · miércoles · viernes</b> y la <b>edición dominical</b></span></p>
+    <button id="shareBtn" class="share-btn" onclick="shareEdition()"><svg class="jolly"><use href="#jolly"/></svg> Compartir esta edición</button>
+  </div>
+</footer>
+
+<button class="toTop" id="toTop" aria-label="Volver al timón"><svg class="jolly"><use href="#jolly"/></svg></button>
+
+<script>
+function tick(){var d=new Date(),z=function(n){return String(n).padStart(2,'0')},el=document.getElementById('clock');
+  if(el)el.innerHTML='&#9798; '+z(d.getUTCHours())+':'+z(d.getUTCMinutes())+':'+z(d.getUTCSeconds())+' <b>ZULU</b>';}
+tick();setInterval(tick,1000);
+
+var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if(reduce){document.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')});}
+else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}})},{threshold:.12});
+  document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});}
+
+// scroll-spy nav highlight
+var navLinks=[].slice.call(document.querySelectorAll('.mast nav a'));
+var spy=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var id='#'+en.target.id;
+  navLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===id);});}})},{rootMargin:'-45% 0px -50% 0px'});
+['indice','vigia','carta','horizonte','tecnologia','botin','cofre'].forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s);});
+
+// in-page navigation: reveal target + offset scroll (works even on direct jumps)
+function revealIn(el){[].slice.call(el.querySelectorAll('.rv')).forEach(function(r){r.classList.add('in');});}
+function goTo(id){var t=document.getElementById(id);if(!t)return;revealIn(t);
+  var y=t.getBoundingClientRect().top+window.pageYOffset-(id==='top'?0:70);
+  window.scrollTo({top:Math.max(0,y),behavior:reduce?'auto':'smooth'});}
+[].slice.call(document.querySelectorAll('a[href^="#"]')).forEach(function(a){
+  a.addEventListener('click',function(e){var id=a.getAttribute('href').slice(1);
+    if(id&&document.getElementById(id)){e.preventDefault();if(history.replaceState)history.replaceState(null,'','#'+id);goTo(id);}});
+});
+if(location.hash&&location.hash.length>1){var _id=location.hash.slice(1);setTimeout(function(){goTo(_id);},80);}
+
+// compartir edición (Web Share API + copia de respaldo)
+function shareEdition(){
+  var url=location.href, data={title:'Geopolitics for Pirates',text:'Inteligencia geopolítica sin bandera ni amo.',url:url};
+  if(navigator.share){navigator.share(data).catch(function(){});return;}
+  var b=document.getElementById('shareBtn');
+  function flash(msg){if(!b)return;var t=b.getAttribute('data-label')||b.textContent;b.setAttribute('data-label',t);b.textContent=msg;setTimeout(function(){b.innerHTML='<svg class="jolly"><use href="#jolly"/></svg> '+t;},1800);}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(url).then(function(){flash('Enlace copiado ✓');}).catch(function(){window.prompt('Copia el enlace:',url);});}
+  else{window.prompt('Copia el enlace:',url);}
+}
+
+// back to top
+var toTop=document.getElementById('toTop');
+window.addEventListener('scroll',function(){toTop.classList.toggle('show',window.scrollY>640);},{passive:true});
+toTop.addEventListener('click',function(){window.scrollTo({top:0,behavior:reduce?'auto':'smooth'});});
+</script>
+</body>
+</html>
