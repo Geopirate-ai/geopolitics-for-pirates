@@ -8,11 +8,12 @@ from datetime import datetime
 
 API_URL = "https://api.anthropic.com/v1/messages"
 MODEL = os.environ.get("GFP_MODEL", "claude-opus-4-8")
-MAX_TOKENS = int(os.environ.get("GFP_MAX_TOKENS", "32000"))
+# La página completa supera los 32k tokens; Opus admite hasta 128k de salida.
+MAX_TOKENS = int(os.environ.get("GFP_MAX_TOKENS", "64000"))
 
-DIAS = ["lunes","martes","miércoles","jueves","viernes","sábado","domingo"]
-MESES = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto",
-         "septiembre","octubre","noviembre","diciembre"]
+DIAS = ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"]
+MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+         "septiembre", "octubre", "noviembre", "diciembre"]
 
 def here(n): return os.path.join(os.path.dirname(os.path.abspath(__file__)), n)
 def read(n):
@@ -76,11 +77,12 @@ def call_stream(body):
 
 def extract_html(text):
     s, e = text.find("<!DOCTYPE"), text.rfind("</html>")
-    if s == -1 or e == -1: sys.exit("ERROR: respuesta sin HTML completo.")
+    if s == -1 or e == -1:
+        sys.exit("ERROR: respuesta sin HTML completo (sube GFP_MAX_TOKENS si se repite).")
     return text[s:e+len("</html>")]
 
 def validate(html):
-    miss = [n for n in ["Geopolitics for Pirates","<style>",'id="vigia"',"</html>"] if n not in html]
+    miss = [n for n in ["Geopolitics for Pirates", "<style>", 'id="vigia"', "</html>"] if n not in html]
     if miss: sys.exit("ERROR: faltan elementos: %s" % ", ".join(miss))
 
 def lead(html):
@@ -102,4 +104,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
