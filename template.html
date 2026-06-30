@@ -163,7 +163,56 @@ a{color:inherit}
 .auto-badge{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--bone-dim);margin-top:14px}
 .auto-badge b{color:var(--gold)}
 .src a,.kicker a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(212,175,55,.4);transition:border-color .18s,color .18s}
+
 .src a:hover,.kicker a:hover{color:var(--gold);border-bottom-color:var(--gold)}
+/* Tablero de indicadores */
+.dash{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--pitch)}
+.dash .wrap{display:grid;grid-template-columns:repeat(5,1fr);gap:0;padding:0}
+.tile{padding:20px 20px;border-right:1px solid var(--line)}
+.tile:last-child{border-right:none}
+.tl-k{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--bone-dim)}
+.tl-v{font-family:"Fraunces",serif;font-weight:700;font-size:1.6rem;margin-top:6px;line-height:1}
+.tl-d{font-family:"Space Mono",monospace;font-size:11px;margin-top:6px}
+.up{color:#6fcf7f}.down{color:var(--blood)}
+.gauge{height:6px;background:var(--plank);border-radius:3px;margin-top:11px;overflow:hidden}
+.gauge i{display:block;height:100%;background:linear-gradient(90deg,#6fcf7f,var(--gold),var(--blood))}
+@media(max-width:760px){.dash .wrap{grid-template-columns:repeat(2,1fr)}.tile:nth-child(2n){border-right:none}.tile{border-bottom:1px solid var(--line)}}
+/* Por qué importa + ondas de choque */
+.why{font-family:"Spectral",serif;font-size:.92rem;color:var(--bone);background:rgba(212,175,55,.06);border-left:2px solid var(--gold-deep);padding:9px 14px;margin-top:12px;border-radius:0 3px 3px 0}
+.why>b{color:var(--gold);font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-right:7px}
+.why .shock{display:block;color:var(--bone-dim);font-size:.86rem;margin-top:5px}
+.why .shock b{color:var(--blood);font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-right:6px}
+/* Escenarios con probabilidad */
+.scenarios{border:1px solid var(--line);border-radius:5px;background:var(--pitch);padding:26px;margin-bottom:36px}
+.scenarios>h3{font-family:"Fraunces",serif;font-size:1.35rem;margin-bottom:3px}
+.sc-sub{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--bone-dim);margin-bottom:18px}
+.scn{display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start;padding:15px 0;border-top:1px solid var(--line)}
+.scn-lab{font-family:"Space Mono",monospace;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--bone)}
+.scn-lab .prob{display:block;font-family:"Fraunces",serif;font-size:2rem;font-weight:700;color:var(--gold);margin-top:3px;line-height:1}
+.scn-bar{height:5px;background:var(--plank);border-radius:3px;margin:9px 0;overflow:hidden}
+.scn-bar i{display:block;height:100%;background:var(--gold)}
+.scn p{font-size:.95rem;color:var(--bone-dim)}
+/* El Faro: glosario + línea de tiempo */
+.faro-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+@media(max-width:820px){.faro-grid{grid-template-columns:1fr;gap:30px}}
+.gloss{border:1px solid var(--line);border-radius:5px;padding:16px 19px;margin-bottom:13px;background:var(--void)}
+.gloss h4{font-family:"Fraunces",serif;font-size:1.08rem;color:var(--gold)}
+.gloss p{font-size:.9rem;color:var(--bone-dim);margin-top:5px}
+.timeline{position:relative;padding-left:24px}
+.timeline:before{content:"";position:absolute;left:6px;top:5px;bottom:6px;width:2px;background:var(--gold-deep)}
+.tl{position:relative;padding:0 0 19px 0}
+.tl:before{content:"";position:absolute;left:-22px;top:5px;width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 3px var(--void)}
+.tl-date{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.tl p{font-size:.91rem;color:var(--bone);margin-top:3px}
+/* ¿Cómo nos fue? (rendición de cuentas, dominical) */
+.scorecard{border:1px solid var(--line);border-radius:5px;background:var(--pitch);padding:6px 20px 14px}
+.score-row{display:grid;grid-template-columns:90px 1fr;gap:16px;padding:13px 0;border-top:1px solid var(--line)}
+.score-row:first-child{border-top:none}
+.verdict{font-family:"Space Mono",monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;align-self:start;text-align:center;padding:5px 4px;border-radius:3px}
+.v-hit{background:rgba(111,207,127,.15);color:#6fcf7f}
+.v-miss{background:rgba(193,42,42,.15);color:var(--blood)}
+.v-partial{background:rgba(212,175,55,.15);color:var(--gold)}
+.score-row p{font-size:.92rem;color:var(--bone-dim)}
 
 /* BACK TO TOP */
 .toTop{position:fixed;right:20px;bottom:20px;z-index:70;width:48px;height:48px;border-radius:50%;background:var(--plank);border:1px solid var(--gold-deep);color:var(--gold);cursor:pointer;opacity:0;pointer-events:none;transition:opacity .25s,transform .25s;display:flex;align-items:center;justify-content:center}
@@ -213,6 +262,7 @@ a{color:inherit}
       <a href="#tecnologia">Tecnología</a>
       <a href="#botin">El Botín</a>
       <a href="#tesoro">El Tesoro</a>
+      <a href="#faro">El Faro</a>
       <a href="#cofre">El Cofre</a>
     </nav>
     <div class="clock" id="clock">—</div>
@@ -234,6 +284,17 @@ a{color:inherit}
   </div>
 </section>
 
+<!-- TABLERO DE INDICADORES -->
+<section class="dash" id="tablero" aria-label="Indicadores del día">
+  <div class="wrap">
+    <div class="tile"><div class="tl-k">Brent</div><div class="tl-v">$77,5</div><div class="tl-d down">&#9662; 0,5%</div></div>
+    <div class="tile"><div class="tl-k">Oro</div><div class="tl-v">$4.100</div><div class="tl-d down">&#9662; 1,2% · mínimo de 7 meses</div></div>
+    <div class="tile"><div class="tl-k">S&amp;P 500</div><div class="tl-v">7.358</div><div class="tl-d up">&#9652; 1,1%</div></div>
+    <div class="tile"><div class="tl-k">EUR / USD</div><div class="tl-v">1,1425</div><div class="tl-d down">&#9662; dólar firme</div></div>
+    <div class="tile"><div class="tl-k">Barómetro de riesgo</div><div class="tl-v">7 / 10</div><div class="gauge"><i style="width:70%"></i></div></div>
+  </div>
+</section>
+
 <!-- ÍNDICE -->
 <section class="toc" id="indice">
   <div class="wrap">
@@ -248,7 +309,8 @@ a{color:inherit}
       <a class="toc-item" href="#tecnologia"><span class="rn">VII</span><span><span class="tt">El Astrolabio</span><span class="ds">The Astrolabe · tecnología y poder</span></span><span class="arr">&rarr;</span></a>
       <a class="toc-item" href="#botin"><span class="rn">VIII</span><span><span class="tt">El Botín</span><span class="ds">The Loot · las oportunidades</span></span><span class="arr">&rarr;</span></a>
       <a class="toc-item" href="#tesoro"><span class="rn">IX</span><span><span class="tt">El Tesoro</span><span class="ds">The Treasure · configuración macro e inversión</span></span><span class="arr">&rarr;</span></a>
-      <a class="toc-item" href="#cofre"><span class="rn">X</span><span><span class="tt">El Cofre</span><span class="ds">The Chest · la armería de fuentes</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#faro"><span class="rn">X</span><span><span class="tt">El Faro</span><span class="ds">The Lighthouse · contexto, glosario y línea de tiempo</span></span><span class="arr">&rarr;</span></a>
+      <a class="toc-item" href="#cofre"><span class="rn">XI</span><span><span class="tt">El Cofre</span><span class="ds">The Chest · la armería de fuentes</span></span><span class="arr">&rarr;</span></a>
     </div>
   </div>
 </section>
@@ -273,6 +335,7 @@ a{color:inherit}
       <div class="meta"><span class="flag">&#9650; Urgente</span><br>Hoy 13:50 Z<br><span class="reg">Golfo Pérsico</span></div>
       <div class="body"><h3>Trump anuncia cita en Doha; Teherán lo niega</h3>
         <p>Trump dice que EE. UU. e Irán se sentarán mañana martes en Doha, después de que —según Washington— Teherán "pidiera hablar" tras días de ataques recíprocos. Pero un alto cargo iraní lo desmiente: no hay reuniones previstas con equipos técnicos estadounidenses esta semana. La tregua de junio sigue viva de milagro y nadie coincide siquiera en si habrá mesa.</p>
+        <p class="why"><b>Por qué importa</b> Si la mesa se cae, regresa el riesgo de guerra abierta en el Golfo.<span class="shock"><b>Ondas de choque</b> Un repunte del crudo y nervios en todos los mercados.</span></p>
         <p class="src"><a href="https://www.aljazeera.com" target="_blank" rel="noopener">Vía Al Jazeera / CNBC — 29 jun 2026</a></p></div>
     </article>
 
@@ -280,6 +343,7 @@ a{color:inherit}
       <div class="meta"><span class="flag">&#9650; Mercados</span><br>Hoy<br><span class="reg">Wall Street</span></div>
       <div class="body"><h3>Las bolsas rebotan apostando por la calma</h3>
         <p>Wall Street sube ante la posibilidad de una pausa entre EE. UU. e Irán: el Dow gana en torno a 365 puntos, el S&amp;P un 1,1% y el Nasdaq cerca del 2%. Alphabet sube un 4% en su debut como miembro del Dow, pese a cerrar un junio en rojo por las dudas sobre la IA. Europa, en cambio, cierra plana y a la espera.</p>
+        <p class="why"><b>Por qué importa</b> El optimismo descuenta una calma que todavía nadie firmó.<span class="shock"><b>Ondas de choque</b> Un solo titular sobre Ormuz puede borrar la subida en horas.</span></p>
         <p class="src"><a href="https://www.cnbc.com" target="_blank" rel="noopener">Vía CNBC — 29 jun 2026</a></p></div>
     </article>
 
@@ -287,6 +351,7 @@ a{color:inherit}
       <div class="meta"><span class="flag">&#9650; Energía</span><br>Hoy<br><span class="reg">Crudo · Ormuz</span></div>
       <div class="body"><h3>EE. UU. abre la puerta al crudo iraní</h3>
         <p>El Tesoro estadounidense emitió una licencia de 60 días que autoriza producir, vender e importar petróleo iraní, con pago en dólares, hasta el 21 de agosto. Un giro notable: del bloqueo naval a dejar fluir los barriles de Teherán. El Brent ronda los 78 dólares, pero el cuello de botella de Ormuz sigue ahí mientras Irán busca palanca.</p>
+        <p class="why"><b>Por qué importa</b> Más barriles iraníes presionan el precio a la baja y reordenan alianzas.<span class="shock"><b>Ondas de choque</b> Combustible más barato fuera; pulso energético EE. UU.–Irán.</span></p>
         <p class="src"><a href="https://www.reuters.com" target="_blank" rel="noopener">Vía CNBC / Reuters</a></p></div>
     </article>
 
@@ -294,6 +359,7 @@ a{color:inherit}
       <div class="meta">Hoy<br><span class="reg">Europa · Industria</span></div>
       <div class="body"><h3>Volkswagen recortaría hasta 100.000 empleos</h3>
         <p>Según la prensa, el gigante alemán prepararía la mayor poda de plantilla de su historia. El golpe simboliza la crisis del motor europeo, atrapado entre la sobrecapacidad china en vehículos eléctricos y unos costes que ya no cuadran.</p>
+        <p class="why"><b>Por qué importa</b> El corazón industrial de Europa cede terreno frente a China.<span class="shock"><b>Ondas de choque</b> Empleo, política alemana y cadenas de suministro en juego.</span></p>
         <p class="src"><a href="https://www.reuters.com" target="_blank" rel="noopener">Vía CNN / Reuters</a></p></div>
     </article>
 
@@ -301,6 +367,7 @@ a{color:inherit}
       <div class="meta">Hoy<br><span class="reg">Ciberespacio</span></div>
       <div class="body"><h3>Sin alto el fuego en el ciberespacio</h3>
         <p>Mientras los diplomáticos hablan de tregua, los ciberataques atribuidos a Irán contra Israel se han triplicado: de unos 1.600 incidentes el junio pasado a cerca de 4.800 este mes, según la autoridad cibernética israelí. "En el ciberespacio no hay alto el fuego", advierte su director. Infraestructura crítica y empresas, en la mira.</p>
+        <p class="why"><b>Por qué importa</b> La tregua diplomática no existe en el plano digital.<span class="shock"><b>Ondas de choque</b> Infraestructura crítica y empresas, expuestas pese al alto el fuego.</span></p>
         <p class="src"><a href="https://www.rferl.org" target="_blank" rel="noopener">Vía RFE/RL — 29 jun 2026</a></p></div>
     </article>
 
@@ -308,6 +375,7 @@ a{color:inherit}
       <div class="meta">Hoy<br><span class="reg">América Latina</span></div>
       <div class="body"><h3>Dos terremotos sacuden a Venezuela</h3>
         <p>Una doble sacudida sísmica golpea a una economía venezolana ya de rodillas. El desastre llega en el peor momento para un país atrapado entre su crisis interna y una posición hemisférica cada vez más delicada.</p>
+        <p class="why"><b>Por qué importa</b> Un desastre natural cae sobre una economía ya de rodillas.<span class="shock"><b>Ondas de choque</b> Más presión migratoria y hemisférica sobre la región.</span></p>
         <p class="src"><a href="https://www.cnn.com" target="_blank" rel="noopener">Vía CNN</a></p></div>
     </article>
 
@@ -315,6 +383,7 @@ a{color:inherit}
       <div class="meta">Hoy<br><span class="reg">EE. UU. · Instituciones</span></div>
       <div class="body"><h3>El Supremo amplía el poder presidencial</h3>
         <p>La Corte Suprema falló que el presidente puede destituir a reguladores independientes —una victoria para Trump en el caso de la FTC—, aunque frenó por ahora el despido de la gobernadora de la Reserva Federal, Lisa Cook. El equilibrio de poderes en Washington se redibuja a favor de la Casa Blanca.</p>
+        <p class="why"><b>Por qué importa</b> El equilibrio de poderes en EE. UU. se inclina hacia la Casa Blanca.<span class="shock"><b>Ondas de choque</b> Más poder adentro suele significar política exterior más unilateral.</span></p>
         <p class="src"><a href="https://www.supremecourt.gov" target="_blank" rel="noopener">Vía CNBC / SCOTUS</a></p></div>
     </article>
 
@@ -322,6 +391,7 @@ a{color:inherit}
       <div class="meta">Hoy<br><span class="reg">Asia del Sur</span></div>
       <div class="body"><h3>Pakistán bombardea Afganistán</h3>
         <p>Ataques aéreos pakistaníes en la provincia afgana de Paktia dejaron víctimas civiles, incluidos niños, según las autoridades talibanes. Otra grieta abierta en una vecindad —Pakistán, Afganistán, Irán— que esta semana es a la vez mediadora y campo de batalla.</p>
+        <p class="why"><b>Por qué importa</b> Una vecindad clave se vuelve mediadora y campo de batalla a la vez.<span class="shock"><b>Ondas de choque</b> Riesgo de escalada en una región con armas nucleares.</span></p>
         <p class="src"><a href="https://www.timesofisrael.com" target="_blank" rel="noopener">Vía AP / Times of Israel</a></p></div>
     </article>
   </div>
@@ -449,6 +519,19 @@ a{color:inherit}
       <figcaption><span class="mono">El nuevo petróleo</span>Detrás de cada modelo de IA hay cobre, energía y silicio en disputa.</figcaption>
     </figure>
 
+    <div class="scenarios rv">
+      <h3>Escenarios &middot; Irán, Ormuz y la tregua</h3>
+      <div class="sc-sub">Probabilidades a 3 meses &middot; lectura propia, no es certeza</div>
+      <div class="scn"><div class="scn-lab">Base<span class="prob">55%</span></div>
+        <div><div class="scn-bar"><i style="width:55%"></i></div>
+        <p>La tregua aguanta a trompicones: roces intermitentes, negociación abierta en Doha y un crudo nervioso pero sin ruptura. El mundo convive con la tensión.</p></div></div>
+      <div class="scn"><div class="scn-lab">Alternativo<span class="prob">30%</span></div>
+        <div><div class="scn-bar"><i style="width:30%"></i></div>
+        <p>Los choques se intensifican sin guerra total: ciberataques, golpes selectivos y sanciones cruzadas. Ormuz se tensa y el Brent se dispara por encima de los 90 dólares.</p></div></div>
+      <div class="scn"><div class="scn-lab">Cisne negro<span class="prob">15%</span></div>
+        <div><div class="scn-bar"><i style="width:15%"></i></div>
+        <p>Guerra abierta y cierre, aunque sea parcial, del estrecho de Ormuz. Shock energético global, recesión y realineamiento de potencias. Baja probabilidad, impacto máximo.</p></div></div>
+    </div>
     <div class="rumbos">
       <article class="rumbo rv"><div class="num">I</div>
         <div><h3>El cómputo es el nuevo petróleo</h3>
@@ -575,11 +658,40 @@ a{color:inherit}
   </div>
 </section>
 
+<!-- EL FARO (CONTEXTO: GLOSARIO + LÍNEA DE TIEMPO) -->
+<section class="sec pitch" id="faro">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección X &middot; El Faro</div>
+        <h2>Contexto y memoria<span class="en">The Lighthouse — terms, actors and how we got here</span></h2></div>
+      <p class="blurb">Para leer el mapa hay que saber qué significan las marcas. El glosario del día y la línea de tiempo de la historia viva.</p>
+    </div>
+    <div class="faro-grid">
+      <div class="rv">
+        <div class="eye" style="margin-bottom:15px">El diccionario del pirata</div>
+        <div class="gloss"><h4>Estrecho de Ormuz</h4><p>Paso marino entre Irán y la península arábiga por donde transita cerca de una quinta parte del petróleo del mundo. Cerrarlo, aunque sea a medias, dispara los precios globales.</p></div>
+        <div class="gloss"><h4>Lista SDN / OFAC</h4><p>La lista negra del Tesoro de EE. UU. Quien entra en ella queda, en la práctica, cortado del sistema financiero en dólares. Petro figura en ella desde 2025.</p></div>
+        <div class="gloss"><h4>Doctrina Monroe</h4><p>Idea del siglo XIX según la cual América es esfera de influencia de Washington. En 2026 reaparece en los hechos: presión sobre Venezuela, Cuba y más allá.</p></div>
+        <div class="gloss"><h4>Hiperescaladores</h4><p>Los gigantes de la nube —Google, Amazon, Microsoft— cuyo gasto en IA mueve hoy las bolsas y la demanda mundial de energía y chips.</p></div>
+      </div>
+      <div class="rv">
+        <div class="eye" style="margin-bottom:15px">Cómo llegamos aquí &middot; Irán &ndash; EE. UU.</div>
+        <div class="timeline">
+          <div class="tl"><div class="tl-date">Feb 2026</div><p>EE. UU. e Israel lanzan ataques contra instalaciones iraníes. Empieza la escalada del año.</p></div>
+          <div class="tl"><div class="tl-date">17 jun 2026</div><p>Se firma un alto el fuego en Versalles. Frágil desde el primer día.</p></div>
+          <div class="tl"><div class="tl-date">Fin de semana</div><p>Ataques recíprocos —EE. UU. golpea diez objetivos; Irán, bases en el Golfo— ponen la tregua al borde.</p></div>
+          <div class="tl"><div class="tl-date">Hoy</div><p>Trump anuncia conversaciones en Doha; Teherán lo niega. La mesa, en el aire.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- EL COFRE -->
 <section class="sec" id="cofre">
   <div class="wrap">
     <div class="sec-head rv">
-      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección X · El Cofre</div>
+      <div><div class="eye"><svg class="jolly"><use href="#jolly"/></svg> Sección XI · El Cofre</div>
         <h2>La armería de fuentes<span class="en">The Chest — your spyglasses</span></h2></div>
       <p class="blurb">Doce catalejos esenciales para triangular tú mismo. El color marca desde dónde mira cada uno.</p>
     </div>
@@ -626,7 +738,7 @@ else{var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.
 var navLinks=[].slice.call(document.querySelectorAll('.mast nav a'));
 var spy=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){var id='#'+en.target.id;
   navLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')===id);});}})},{rootMargin:'-45% 0px -50% 0px'});
-['indice','vigia','carta','eeuu','americas','colombia','horizonte','tecnologia','botin','tesoro','cofre'].forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s);});
+['indice','vigia','carta','eeuu','americas','colombia','horizonte','tecnologia','botin','tesoro','faro','cofre'].forEach(function(id){var s=document.getElementById(id);if(s)spy.observe(s);});
 
 // in-page navigation: reveal target + offset scroll (works even on direct jumps)
 function revealIn(el){[].slice.call(el.querySelectorAll('.rv')).forEach(function(r){r.classList.add('in');});}

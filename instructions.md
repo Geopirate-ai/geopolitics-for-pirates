@@ -24,21 +24,27 @@ Cada noticia, análisis o tarjeta debe terminar con su etiqueta de fuente **enla
 Usa solo las URLs de `images.unsplash.com` que ya están en la plantilla (licencia libre), con su tratamiento duotono y su `onerror` de respaldo. Nunca incrustes fotos de agencias o stock con marca de agua.
 
 ## Secciones de la edición ordinaria
-- **I · El Vigía** (`id="vigia"`): 6-8 despachos ordenados por urgencia; marca `hot` (flag rojo) los 2-3 más críticos. Cada uno: `.meta` (flag/hora/región) + `<h3>` propio + `<p>` de 2-4 frases + `<p class="src">`. Cubre frentes variados, no solo Oriente Medio. Actualiza la `brief-stamp` y el "estado del mar" del hero.
+- **I · El Vigía** (`id="vigia"`): 6-8 despachos ordenados por urgencia; marca `hot` (flag rojo) los 2-3 más críticos. Cada uno: `.meta` (flag/hora/región) + `<h3>` propio + `<p>` de 2-4 frases + un `<p class="why"><b>Por qué importa</b> … <span class="shock"><b>Ondas de choque</b> …</span></p>` (una frase de consecuencia + el efecto de segundo orden: precios, energía, migración, mercados) + `<p class="src">`. Cubre frentes variados, no solo Oriente Medio. Actualiza la `brief-stamp` y el "estado del mar" del hero. La línea "Por qué importa" es OBLIGATORIA en cada despacho.
 - **II · La Carta** (`id="carta"`): 4 análisis de fondo (rejilla 2×2, clases `reads`/`read`), con `.lens` de perspectiva, `<h3>`, `<p>` 3-5 frases y `.kicker`.
 - **III · El Galeón** (`id="eeuu"`): Estados Unidos como hegemón. 3 piezas (rejilla `reads`) sobre su política exterior, su pulso interno (Casa Blanca, Corte, Congreso) y su sombra sobre el hemisferio. Busca la actualidad real de hoy de EE.UU.
 - **IV · Aguas Revueltas** (`id="americas"`): Las Américas. 3 piezas, **una por país: Venezuela, Cuba y México**, leídas en clave de política internacional (presión de Washington, energía, soberanía, migración). Actualiza con lo de hoy de cada uno.
 - **V · Puerto Base** (`id="colombia"`): Colombia, sección **robusta** (4 piezas). Lee la coyuntura nacional —elecciones y transición, gobierno, economía, seguridad— **siempre conectándola con la política internacional**: relación con EE.UU., papel en la ONU/multilateralismo, posición regional (Venezuela, Cuba), Sur global. No es noticia local: es Colombia en el tablero del mundo.
-- **VI · El Horizonte** (`id="horizonte"`): 3 rumbos visionarios.
+- **VI · El Horizonte** (`id="horizonte"`): 3 rumbos visionarios. **Obligatorio** abrir la sección con un bloque `.scenarios`: para el tema más caliente del momento, tres escenarios a 3 meses —**Base**, **Alternativo** y **Cisne negro**— cada uno con su **probabilidad %** (deben sumar 100), su barra (`.scn-bar i style="width:N%"`) y una frase. Son juicios propios, no certezas; dilo en el `.sc-sub`.
 - **VII · El Astrolabio** (`id="tecnologia"`): 4 piezas de tecnología como terreno de poder (IA/cómputo, semiconductores/controles, energía del cómputo, espacio, ciber).
 - **VIII · El Botín** (`id="botin"`): 6 "cofres" (configuración → abertura → quién mueve). Conserva el `disclaimer`: no es consejo financiero.
 - **IX · El Tesoro** (`id="tesoro"`): lectura de la **configuración económica mundial del momento** y las **tesis de inversión** que se discuten en el mercado, SIN sesgo y SIN recomendar. 6 piezas (rejilla `reads`). Cada una presenta un área (energía/cómputo, bolsa/IA, renta fija/crédito, oro/refugio, emergentes/dólar, defensa/materiales u otras vigentes) con **el caso a favor Y el riesgo en contra**, de forma equilibrada. Cubre la macro real de hoy: tasas, inflación, dólar, energía, oro, bolsas. **Obligatorio** conservar el `<p class="disclaimer">` con el aviso de que NO es asesoría de inversión, no es personalizado, y que conviene consultar a un profesional. Nunca digas "compra esto" ni des consejos personalizados; describe lo que el mercado discute.
-- **X · El Cofre** (`id="cofre"`): 12 fuentes equilibradas entre perspectivas (suele cambiar poco).
+- **X · El Faro** (`id="faro"`): contexto para cualquier lector. Dos columnas (`.faro-grid`): a la izquierda un **glosario** de 4 términos/actores clave de la edición (`.gloss` con `<h4>` + `<p>`: qué es y por qué importa hoy); a la derecha una **línea de tiempo** (`.timeline` con `.tl` → `.tl-date` + `<p>`) de 4 hitos que expliquen "cómo llegamos aquí" en la historia más viva del momento. Renueva términos e hitos según la actualidad.
+- **XI · El Cofre** (`id="cofre"`): 12 fuentes equilibradas entre perspectivas (suele cambiar poco).
 
 Las secciones III, IV y V (El Galeón, Aguas Revueltas, Puerto Base) son **fijas: aparecen en TODAS las ediciones**, ordinarias y dominical.
 
+## Tablero de indicadores (banda tras el hero, `id="tablero"`)
+Actualiza las 5 casillas (`.tile`) con cifras REALES de hoy: petróleo (Brent), oro, una bolsa de referencia (S&P 500), un par de divisas (EUR/USD) y un **Barómetro de riesgo** propio de 0 a 10 (ajusta el `width` de `.gauge i` al porcentaje). Marca cada variación con `.up` (&#9652;) o `.down` (&#9662;). Son fotos del momento; que reflejen el día.
+
 ## Edición dominical (solo domingos)
 La Carta pasa a 2-3 lecturas largas; El Horizonte gana profundidad; añade **"El Cuaderno · Conclusiones de la semana"** (`id="cuaderno"`, antes de El Cofre) con: qué cambió, qué vigilar, y el veredicto del capitán. Suma su entrada al índice y al menú. La etiqueta del número dice "Edición Dominical".
+
+Incluye además, dentro de El Cuaderno, un bloque **"¿Cómo nos fue?"** (rendición de cuentas) usando `.scorecard`: revisa 3-4 apuestas o escenarios de ediciones recientes y puntúalas con `.verdict` `v-hit` (acertamos), `v-miss` (fallamos) o `v-partial` (a medias), con una frase honesta de qué pasó. Estructura cada fila: `<div class="score-row"><span class="verdict v-hit">Acierto</span><p>…</p></div>`. Sé honesto también con los fallos: eso da credibilidad.
 
 ## Conserva el diseño
 No cambies el CSS, las fuentes, el SVG de la calavera, el índice, el scroll-spy, el botón de timón, el de compartir ni el arreglo de revelado. Cambia solo el contenido editorial y los sellos de fecha/número.
